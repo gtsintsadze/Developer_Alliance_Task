@@ -9,7 +9,7 @@ class Database
         $databaseCredentials = [
             'database' => "users",
             'username' => 'root',
-            'password' => 'root',
+            'password' => '',
             'servername' => 'localhost'
         ];
         $database = $databaseCredentials['database'];
@@ -23,14 +23,21 @@ class Database
         $this->PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function getPDO(): PDO
+    public function createUser($name, $lname, $email)
     {
-        return $this->PDO;
+        $sql = "INSERT INTO users (first_name, last_name, email) VALUES (?,?,?)";
+        $this->PDO->prepare($sql)->execute([$name,$lname,$email]);
     }
 
-    public function prepare($sql)
+    public function readUsers()
     {
-        $pdo = $this->getPDO();
-        return $this->prepare($sql);
+        return $this->PDO->query("SELECT * FROM users")->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function deleteUser($id)
+    {
+        $sql = "DELETE FROM users WHERE ID=$id";
+        $this->PDO->prepare($sql)->execute();
+    }
+
 }
