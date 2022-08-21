@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__."./core/Database.php";
+$template = new Template();
+
+require_once __DIR__ . "./core/Database.php";
 
 $page = $_SERVER["REQUEST_URI"] ?? null;
 $requestMethod = $_SERVER["REQUEST_METHOD"];
@@ -9,21 +11,46 @@ $users = new Database();
 
 switch ($page) {
     case @"/":
-        require_once "templates/index.php";
+        $template->render("index.php");
         break;
     case @"/sign-up":
-        require_once "templates/add_users.php";
+
         if ($requestMethod === "POST") {
+            $validation = new Validation();
+            $errors = [];
+
             $name = $_POST["fname"];
             $lname = $_POST["lname"];
             $email = $_POST["email"];
-            $users->createUser($name,$lname,$email);
-            echo "User Added";
+
+            if ($validation->isEmpty($name) === false) {
+                $errors["name"] = "name is empty";
+
+            }
+
+            if ($validation->isEmpty($lname) === false) {
+                $errors["lname"] = "lname is empty";
+            }
+
+            if ($validation->isEmpty($email) === false) {
+                $errors["email"] = "email is empty";
+            }
+
+            if (empty($errors)) {
+                $users->createUser($name, $lname, $email);
+                $success = "User Successfully Added";
+                $template->render("add_users.php", ["success" => $success]);
+            } else {
+                $template->render("add_users.php", ["errors"=> $errors]);
+            }
+
+        } else {
+            $template->render("add_users.php", ["errors"=> [] ]);
         }
         break;
     case @"/records":
         $stmt = $users->readUsers();
-        require_once "templates/records.php";
+        $template->render("records.php", ["stmt"=> $stmt]);
         break;
     case @"/delete":
         if ($requestMethod === "POST") {

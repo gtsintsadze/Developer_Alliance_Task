@@ -14,22 +14,35 @@
 </div>
 
 <div class="user-input-form">
-    <form method="post" class="user-content-form">
+    <form method="post" class="user-content-form" novalidate>
         <div class="fname-content">
-            <label for="fname" >First Name:</label>
+            <label for="fname">First Name:</label>
             <input type="text" id="fname" name="fname" required>
+            <?php if (isset($errors["name"])): ?>
+                <?php echo $errors["name"] ?>
+            <?php endif ?>
         </div>
 
         <div class="lname-content">
             <label for="lname" class="first-name">Last Name:</label>
             <input type="text" id="lname" name="lname" required>
+            <?php if (isset($errors["lname"])): ?>
+                <?php echo $errors["lname"] ?>
+            <?php endif ?>
         </div>
 
         <div class="email-content">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
+            <?php if (isset($errors["email"])): ?>
+                <?php echo $errors["email"] ?>
+            <?php endif ?>
         </div>
-
+        <div>
+            <?php if (isset($success)): ?>
+                <?php echo $success ?>
+            <?php endif ?>
+        </div>
         <input type="submit" class="submit-button">
     </form>
 </div>

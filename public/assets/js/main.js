@@ -7,7 +7,6 @@ $(".user-list-form button").click(function(e) {
         data: data,
         success: this.success,
     });
-    window.top.location.reload()
-    // location.reload();
+    location.reload();
 })
 

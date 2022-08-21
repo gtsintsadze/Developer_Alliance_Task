@@ -39,5 +39,4 @@ class Database
         $sql = "DELETE FROM users WHERE ID=$id";
         $this->PDO->prepare($sql)->execute();
     }
-
 }
