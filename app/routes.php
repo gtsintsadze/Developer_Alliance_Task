@@ -40,6 +40,10 @@ switch ($page) {
                 $errors["exists"] = "email already exists";
             }
 
+            if ($validation->isValidEmail($email) === false) {
+                $errors["email"] = "email is not valid";
+            }
+
             if (empty($errors)) {
                 $users->createUser($name, $lname, $email);
                 $success = "User Successfully Added";
