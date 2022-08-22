@@ -37,6 +37,9 @@
             <?php if (isset($errors["email"])): ?>
                 <?php echo $errors["email"] ?>
             <?php endif ?>
+            <?php if (isset($errors["email_format"])): ?>
+                <?php echo $errors["email_format"] ?>
+            <?php endif ?>
         </div>
         <div>
             <?php if (isset($success)): ?>

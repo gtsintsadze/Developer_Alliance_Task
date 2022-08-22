@@ -5,31 +5,27 @@ body {
   line-height: 1.4em;
   font-family: tahoma, arial, sans-serif;
 }
-
-.to-homepage {
+body .to-homepage {
   margin-bottom: 25px;
   font-size: 30px;
 }
-
-table {
+body table {
   width: 85%;
   margin: 0;
   background: #FFFFFF;
   border: 1px solid #333333;
   border-collapse: collapse;
 }
-
-td, th {
+body table td,
+body table th {
   border-bottom: 1px solid #333333;
   padding: 6px 16px;
   text-align: left;
 }
-
-th {
+body table th {
   background: #EEEEEE;
 }
-
-caption {
+body caption {
   background: #E0E0E0;
   margin: 0;
   border: 1px solid #333333;
@@ -37,3 +33,4 @@ caption {
   padding: 6px 16px;
   font-weight: bold;
 }
+/*# sourceMappingURL=records.css.map */
