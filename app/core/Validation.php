@@ -17,4 +17,17 @@ class Validation
         }
         return true;
     }
+
+    public function emailExists($email): bool
+    {
+        $validate_mail = new Database();
+        $stmt = $validate_mail->readUsers();
+
+        foreach ($stmt as $item) {
+            if ($item["email"] === $email) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

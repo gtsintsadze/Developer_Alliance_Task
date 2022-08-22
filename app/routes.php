@@ -36,6 +36,10 @@ switch ($page) {
                 $errors["email"] = "email is empty";
             }
 
+            if ($validation->emailExists($email) === true) {
+                $errors["exists"] = "email already exists";
+            }
+
             if (empty($errors)) {
                 $users->createUser($name, $lname, $email);
                 $success = "User Successfully Added";
@@ -46,6 +50,9 @@ switch ($page) {
 
         } else {
             $template->render("add_users.php", ["errors"=> [] ]);
+            unset($email);
+            unset($errors);
+            unset($lname);
         }
         break;
     case @"/records":

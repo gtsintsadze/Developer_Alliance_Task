@@ -40,6 +40,10 @@
             <?php if (isset($errors["email_format"])): ?>
                 <?php echo $errors["email_format"] ?>
             <?php endif ?>
+
+            <?php if (isset($errors["exists"])): ?>
+                <?php echo $errors["exists"] ?>
+            <?php endif ?>
         </div>
         <div>
             <?php if (isset($success)): ?>
