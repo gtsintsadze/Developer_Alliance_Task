@@ -1,4 +1,4 @@
-$(".user-list-form button").click(function(e) {
+$(".user-list-form .delete-btn").click(function(e) {
     const user_id = e.target.id
     const  data = {"ID": user_id}
     $.ajax({
@@ -7,6 +7,5 @@ $(".user-list-form button").click(function(e) {
         data: data,
         success: this.success,
     });
-    location.reload();
+    e.target.closest('tr').remove()
 })
-
